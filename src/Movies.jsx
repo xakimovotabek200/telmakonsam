@@ -1,51 +1,48 @@
-import React, { useCallback, useEffect, useState } from "react";
-import Movie from "./Movie";
+import React, { useState, useEffect } from "react";
+import Movies from "./Movies";
 
-export default function Movies() {
+function Movie() {
+    const [searchQuery, setSearchQuery] = useState("");
     const [data, setData] = useState([]);
-    const [search, setSearch] = useState("");
-    const [loading, setLoading] = useState(false);
 
-    const fetchData = useCallback(async () => {
-        setLoading(true);
-        const url = `https://anime-db.p.rapidapi.com/anime?page=1&size=10&search=${search}&genres=Fantasy%2CDrama&sortBy=ranking&sortOrder=asc`;
-        const options = {
-            method: 'GET',
-            headers: {
-                'X-RapidAPI-Key': '547905a7admsheebe69e0954ca44p1e974cjsneac7bd6f7950',
-                'X-RapidAPI-Host': 'anime-db.p.rapidapi.com'
-            }
-        };
-
-
+    const fetchData = async () => {
         try {
-            const response = await fetch(url, options);
-            const result = await response.json();
-            setData(result.data);
-            console.log(result.data)
+            const response = await fetch("https://fakestoreapi.com/products");
+            if (response.ok) {
+                const data = await response.json();
+                setData(data);
+            } else {
+                console.error("Failed to fetch data");
+            }
         } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
+            console.error("Error fetching data:", error);
         }
-    }, [search]);
+    };
 
     useEffect(() => {
-        const timeOutId = setTimeout(fetchData, 3000);
-        return () => clearTimeout(timeOutId);
-    }, [fetchData]);
+        fetchData();
+    }, []);
+
+    const filteredData = data.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div className="container">
             <div className="search">
-                <input type="search" onChange={(e) => setSearch(e.target.value)} />
+                <input
+                    type="search"
+                    placeholder="Search for movies"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />
             </div>
             <div className="movies">
-                {loading ? (
-                    <h1>loadin ...</h1>
-                ) : (
-                    data.map((item) => <Movie key={item.id} {...item} />)
-                )}
+                {filteredData.map((product) => (
+                    <div>
+                        <Movies key={product.id} {...product} />
+                    </div>
+                ))}
             </div>
         </div>
     );

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
     return (
@@ -7,14 +8,14 @@ function Navbar() {
                 <h1>Otash movie</h1>
             </div>
             <ul className='ul_flex'>
-                <li>Home</li>
-                <li>Action</li>
-                <li>Horror</li>
-                <li>Sports</li>
-                <li>Fantasy</li>
+                <NavLink exact to={"/"} activeClassName="active">Home</NavLink>
+                <NavLink to={"/action"} activeClassName="active">Action</NavLink>
+                <NavLink to={"/horror"} activeClassName="active">Horror</NavLink>
+                <NavLink to={"/sports"} activeClassName="active">Sports</NavLink>
+                <NavLink to={"/fantasy"} activeClassName="active">Fantasy</NavLink>
             </ul>
         </nav>
     )
 }
 
-export default Navbar
+export default Navbar;
