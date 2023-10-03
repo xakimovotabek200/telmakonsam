@@ -1,12 +1,9 @@
 import React from 'react'
 
-const Movie = ({ title, image }) => {
-    return (
-        <article>
-            <img src={image} alt="" />
-            <h1>{title}</h1>
-        </article>
-    )
+function Movie() {
+  return (
+    <div>Movie</div>
+  )
 }
 
 export default Movie

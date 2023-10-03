@@ -31,16 +31,17 @@ nav ul {
   list-style: none;
 }
 
-nav ul li {
+nav ul a {
   padding: 10px 20px;
   color: white;
   font-size: 19px;
   transition: all 0.3s;
   font-family: sans-serif;
   cursor: pointer;
+  text-decoration: none; /* underline ni o'chirish */
 }
 
-nav ul li:hover {
+nav ul a:hover {
   background-color: yellow;
   color: black;
 }
@@ -51,7 +52,6 @@ nav ul li:hover {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  background-color: lightblue;
 }
 
 .container .search input {
@@ -64,6 +64,7 @@ nav ul li:hover {
 
 .container .movies {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 30px;
   width: 100%;
@@ -71,18 +72,69 @@ nav ul li:hover {
 
 .container .movies article {
   width: calc(100% / 5 - 30px);
-  box-shadow: 0px 0px 0px black;
+  box-shadow: 0px 0px 10px black;
   border-radius: 10px;
   height: 100%;
-  background-color: yellow;
+  overflow: hidden;
 }
 
 .container .movies article img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .container .movies article h1 {
   font-size: 18px;
   text-align: center;
+}
+.salom {
+  height: 250px;
+  width: 250px;
+}
+.salomText {
+  width: 200px;
+}
+
+.salomText {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.hello {
+  border: 1px solid red;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.salomText {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.ratings {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.hello button {
+  margin-top: 10px;
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.hello button.added-to-cart {
+  background-color: #f44336;
+}
+
+.hello button:hover {
+  background-color: #45a049;
 }

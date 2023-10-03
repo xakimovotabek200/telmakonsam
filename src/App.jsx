@@ -1,23 +1,23 @@
 import React from 'react';
-import { BrowserRouter, Route, Router, Routes, } from 'react-router-dom'; // Import Switch component
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Action from './Action';
 import Fantasy from './Fantasy';
-import Home from './Home';
 import Horror from './Horror';
 import Sports from './Sports';
 import Navbar from './components/Navbar/Navbar';
+import Home from './Home';
 
 function App() {
   return (
     <div>
-      <BrowserRouter> {/* Use Switch instead of switch */}
+      <BrowserRouter>
         <Navbar />
+        <Home />
         <Routes>
-          <Route exact path="/" component={Home} />
-          <Route path="/action" component={Action} />
-          <Route path="/fantasy" component={Fantasy} />
-          <Route path="/horror" component={Horror} />
-          <Route path="/sports" component={Sports} />
+          <Route path={"/action"} element={<Action />} />
+          <Route path={"/fantasy"} element={<Fantasy />} />
+          <Route path={"/horror"} element={<Horror />} />
+          <Route path={"/sports"} element={<Sports />} />
         </Routes>
       </BrowserRouter>
     </div>
